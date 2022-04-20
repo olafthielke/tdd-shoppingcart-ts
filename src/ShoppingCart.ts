@@ -1,4 +1,4 @@
 export default class ShoppingCart {
     items: any = [];
-    total: number = -1;
+    total: number = 0;
 }
