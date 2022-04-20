@@ -1,3 +1,3 @@
 export default class ShoppingCart {
-    items: any;
+    items: any = [];
 }
