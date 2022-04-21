@@ -15,8 +15,14 @@ describe("When construct ShoppingCart", () => {
 
 describe("When call cart.add()", () => {
 
-    it("Then can call cart.add() with product", () => {
+    it("Then can call cart.add() with product.", () => {
         const cart = new ShoppingCart();
         cart.add({ });
+    });
+
+    it("with quantity of 0 Then throw ZeroQuantity error.", () => {
+        const cart = new ShoppingCart();
+        const add = () => cart.add({ }, 0);
+        expect(add).toThrow(new ZeroQuantity());
     });
 });
