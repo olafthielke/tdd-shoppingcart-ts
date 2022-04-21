@@ -26,6 +26,7 @@ describe("When call cart.add()", () => {
         const cart = new ShoppingCart();
         const add = () => cart.add({ }, -1);
         expect(add).toThrow(new NegativeQuantity());
+        expect(add).toThrow("-1 is not a valid quantity.");
     });
 
 
