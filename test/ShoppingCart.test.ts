@@ -16,33 +16,23 @@ describe("When construct ShoppingCart", () => {
 
 describe("When call cart.add()", () => {
 
-    it("with quantity of 0 Then throw ZeroQuantity error.", () => {
-        const cart = new ShoppingCart();
-        const add = () => cart.add({ }, 0);
-        verifyZeroQuantityError(add);
-    });
-
     it.each([
+        [0],
         [-1], 
         [-3],
         [-10]
         ])
-        (`with quantity of %i Then throw NegativeQuantity error.`, 
+        (`with quantity of %i Then throw InvalidQuantity error.`, 
         (quantity) => {
             const cart = new ShoppingCart();
             const add = () => cart.add({ }, quantity);
-            verifyNegativeQuantityError(add, quantity);    
+            verifyInvalidQuantityError(add, quantity);    
         }
     );
 
 
-    function verifyZeroQuantityError(add: () => void) {
-        expect(add).toThrow(new ZeroQuantity());
-        expect(add).toThrow("0 is an invalid quantity.");
-    }
-
-    function verifyNegativeQuantityError(add: () => void, quantity: number) {
-        expect(add).toThrow(NegativeQuantity);
+    function verifyInvalidQuantityError(add: () => void, quantity: number) {
+        expect(add).toThrow(InvalidQuantity);
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
     }
 });
