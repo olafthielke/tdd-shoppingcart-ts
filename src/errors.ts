@@ -3,3 +3,7 @@ export class ZeroQuantity extends Error {
         super("0 is an invalid quantity.")
     }
 }
+
+export class NegativeQuantity extends Error {
+    
+}
