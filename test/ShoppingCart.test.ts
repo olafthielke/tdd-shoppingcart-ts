@@ -13,3 +13,10 @@ describe("When construct ShoppingCart", () => {
     });
 });
 
+describe("When call cart.add()", () => {
+
+    it("Then can call cart.add()", () => {
+        const cart = new ShoppingCart();
+        cart.add();
+    });
+});
