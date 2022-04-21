@@ -25,7 +25,13 @@ describe("When call cart.add()", () => {
     it("with quantity of -1 Then throw NegativeQuantity error.", () => {
         const cart = new ShoppingCart();
         const add = () => cart.add({ }, -1);
-        verifyNegativeQuantityError(add);
+        verifyNegativeQuantityError(add, -1);
+    });
+
+    it("with quantity of -3 Then throw NegativeQuantity error.", () => {
+        const cart = new ShoppingCart();
+        const add = () => cart.add({ }, -3);
+        verifyNegativeQuantityError(add, -3);
     });
 
 
@@ -34,8 +40,8 @@ describe("When call cart.add()", () => {
         expect(add).toThrow("0 is an invalid quantity.");
     }
 
-    function verifyNegativeQuantityError(add: () => void) {
+    function verifyNegativeQuantityError(add: () => void, quantity: number) {
         expect(add).toThrow(new NegativeQuantity());
-        expect(add).toThrow("-1 is not a valid quantity.");
+        expect(add).toThrow(`${quantity} is not a valid quantity.`);
     }
 });
