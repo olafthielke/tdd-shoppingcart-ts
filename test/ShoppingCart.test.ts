@@ -41,7 +41,7 @@ describe("When call cart.add()", () => {
     }
 
     function verifyNegativeQuantityError(add: () => void, quantity: number) {
-        expect(add).toThrow(new NegativeQuantity());
+        expect(add).toThrow(NegativeQuantity);
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
     }
 });

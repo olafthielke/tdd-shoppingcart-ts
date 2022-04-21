@@ -8,6 +8,6 @@ export default class ShoppingCart {
         if (quantity === 0) {
             throw new ZeroQuantity();
         }
-        throw new NegativeQuantity();
+        throw new NegativeQuantity(quantity);
     }
 }
