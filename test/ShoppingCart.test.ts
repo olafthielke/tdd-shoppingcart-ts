@@ -1,5 +1,5 @@
 import ShoppingCart from "../src/ShoppingCart";
-import { NegativeQuantity, ZeroQuantity } from "../src/errors";
+import { InvalidQuantity } from "../src/errors";
 
 describe("When construct ShoppingCart", () => {
 
