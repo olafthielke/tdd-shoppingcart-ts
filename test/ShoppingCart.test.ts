@@ -19,7 +19,12 @@ describe("When call cart.add()", () => {
     it("with quantity of 0 Then throw ZeroQuantity error.", () => {
         const cart = new ShoppingCart();
         const add = () => cart.add({ }, 0);
+        verifyZeroQuantityError(add);
+    });
+
+    
+    function verifyZeroQuantityError(add: () => void) {
         expect(add).toThrow(new ZeroQuantity());
         expect(add).toThrow("0 is an invalid quantity.");
-    });
+    }
 });
