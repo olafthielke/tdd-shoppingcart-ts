@@ -22,7 +22,13 @@ describe("When call cart.add()", () => {
         verifyZeroQuantityError(add);
     });
 
-    
+    it("with quantity of -1 Then throw NegativeQuantity error.", () => {
+        const cart = new ShoppingCart();
+        const add = () => cart.add({ }, -1);
+        expect(add).toThrow(new NegativeQuantity());
+    });
+
+
     function verifyZeroQuantityError(add: () => void) {
         expect(add).toThrow(new ZeroQuantity());
         expect(add).toThrow("0 is an invalid quantity.");
