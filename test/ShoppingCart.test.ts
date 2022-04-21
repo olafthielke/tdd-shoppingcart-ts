@@ -22,17 +22,17 @@ describe("When call cart.add()", () => {
         verifyZeroQuantityError(add);
     });
 
-    it("with quantity of -1 Then throw NegativeQuantity error.", () => {
-        const cart = new ShoppingCart();
-        const add = () => cart.add({ }, -1);
-        verifyNegativeQuantityError(add, -1);
-    });
-
-    it("with quantity of -3 Then throw NegativeQuantity error.", () => {
-        const cart = new ShoppingCart();
-        const add = () => cart.add({ }, -3);
-        verifyNegativeQuantityError(add, -3);
-    });
+    it.each([
+        [-1], 
+        [-3]
+        ])
+        (`with quantity of %i Then throw NegativeQuantity error.`, 
+        (quantity) => {
+            const cart = new ShoppingCart();
+            const add = () => cart.add({ }, quantity);
+            verifyNegativeQuantityError(add, quantity);    
+        }
+    );
 
 
     function verifyZeroQuantityError(add: () => void) {
