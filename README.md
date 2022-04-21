@@ -1,3 +1,3 @@
 # tdd-shoppingcart-ts
 
-Develop a TypeScript ShoppingCart implementation using Test-Driven Development.
+Develop a ShoppingCart implementation in TypeScript using Test-Driven Development.
