@@ -24,7 +24,8 @@ describe("When call cart.add()", () => {
 
     it.each([
         [-1], 
-        [-3]
+        [-3],
+        [-10]
         ])
         (`with quantity of %i Then throw NegativeQuantity error.`, 
         (quantity) => {
