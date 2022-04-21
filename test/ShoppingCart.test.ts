@@ -1,4 +1,5 @@
 import ShoppingCart from "../src/ShoppingCart";
+import { ZeroQuantity } from "../src/errors";
 
 describe("When construct ShoppingCart", () => {
 
@@ -14,11 +15,6 @@ describe("When construct ShoppingCart", () => {
 });
 
 describe("When call cart.add()", () => {
-
-    it("Then can call cart.add() with product.", () => {
-        const cart = new ShoppingCart();
-        cart.add({ });
-    });
 
     it("with quantity of 0 Then throw ZeroQuantity error.", () => {
         const cart = new ShoppingCart();
