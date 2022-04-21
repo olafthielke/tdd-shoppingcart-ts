@@ -5,5 +5,7 @@ export class ZeroQuantity extends Error {
 }
 
 export class NegativeQuantity extends Error {
-    
+    constructor() {
+        super("-1 is not a valid quantity.")
+    }
 }
