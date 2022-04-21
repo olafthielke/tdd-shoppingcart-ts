@@ -15,8 +15,8 @@ describe("When construct ShoppingCart", () => {
 
 describe("When call cart.add()", () => {
 
-    it("Then can call cart.add()", () => {
+    it("Then can call cart.add() with product", () => {
         const cart = new ShoppingCart();
-        cart.add();
+        cart.add({ });
     });
 });
