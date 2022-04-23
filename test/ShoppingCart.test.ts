@@ -34,6 +34,7 @@ describe("When call cart.add()", () => {
         const cart = new ShoppingCart();
         cart.add({ name : "Apple" }, 3);
         expect(cart.items.length).toBe(1);
+        expect(cart.items[0].name).toBe("Apple");
     });
 
 
