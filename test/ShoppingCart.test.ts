@@ -30,6 +30,13 @@ describe("When call cart.add()", () => {
         }
     );
 
+    it("for 3 Apples Then have 3 Apples in cart.", () => {
+        const cart = new ShoppingCart();
+        cart.add({ name : "Apple" }, 3);
+        expect(cart.items.length).toBe(1);
+    });
+
+
 
     function verifyInvalidQuantityError(add: () => void, quantity: number) {
         expect(add).toThrow(InvalidQuantity);
