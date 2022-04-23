@@ -5,6 +5,8 @@ export default class ShoppingCart {
     total: number = 0;
 
     public add(product: any, quantity: number) {
-        throw new InvalidQuantity(quantity);
+        if (quantity <= 0)
+            throw new InvalidQuantity(quantity);
+        this.items.push({ });
     }
 }
