@@ -20,6 +20,7 @@ describe("When call cart.add()", () => {
 
     const apple: Product = { name : "Apple", unitPrice: 0.35 };
     const banana: Product = { name : "Banana", unitPrice: 0.75 };
+    const cantaloupe: Product = { name : "Cantaloupe", unitPrice: 2.50 };
 
     it.each([
         [0],
@@ -50,7 +51,20 @@ describe("When call cart.add()", () => {
             expect(cart.total).toBe(calcSubtotal(quantity, unitPrice));
     });
 
-    
+    it("with 13 Cantaloupes, 19 Bananas and 23 Apples then have those in cart.", () => {
+        const cart = new ShoppingCart();
+        cart.add(cantaloupe, 13);
+        cart.add(banana, 19);
+        cart.add(apple, 23);
+
+        expect(cart.items.length).toBe(3);
+        verifyCartItem(cart.items[0], cantaloupe, 13);
+        verifyCartItem(cart.items[1], banana, 19);
+        verifyCartItem(cart.items[2], apple, 23);
+        expect(cart.total).toBe(calcSubtotal(13, cantaloupe.unitPrice) + calcSubtotal(19, banana.unitPrice) + calcSubtotal(23, apple.unitPrice));
+    });
+
+
     function calcSubtotal(quantity: number, unitPrice: number) {
         return (unitPrice * 100) * quantity / 100;
     }
