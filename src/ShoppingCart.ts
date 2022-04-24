@@ -14,4 +14,8 @@ export default class ShoppingCart {
             throw new InvalidQuantity(quantity);
         this.items.push(new ShoppingCartItem(product, quantity));
     }
+
+    public clear() {
+        
+    }
 }
