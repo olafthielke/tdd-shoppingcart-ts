@@ -15,8 +15,8 @@ export default class ShoppingCart {
         this.items.push(new ShoppingCartItem(product, quantity));
     }
 
-    public remove() {
-        
+    public remove(productName: string) {
+
     }
 
     public clear() {

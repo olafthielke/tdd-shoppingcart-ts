@@ -108,11 +108,6 @@ describe("When call cart.clear()", () => {
 
 describe("When call cart.remove()", () => {
 
-    it("Then can call cart.remove()", () => {
-        const cart = new ShoppingCart();
-        cart.remove();
-    });
-
     it("on an empty cart, then stays an empty cart.", () => {
         const cart = new ShoppingCart();
         cart.remove("Apple");
