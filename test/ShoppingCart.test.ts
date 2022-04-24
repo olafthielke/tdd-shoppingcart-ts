@@ -35,6 +35,20 @@ describe("When call cart.add()", () => {
         }
     );
 
+    it.each([
+        [3, "apple", 0.35], 
+        [5, "banana", 0.75]
+        ])
+        (`for %i %ss Then will have this in cart.`, 
+        (quantity, productName, unitPrice) => {
+            const cart = new ShoppingCart();
+            const product = new Product(productName, unitPrice); 
+            cart.add(product, quantity);
+            expect(cart.items.length).toBe(1);
+            verifyCartItem(cart.items[0], product, quantity);
+            expect(cart.total).toBe(calcSubtotal(quantity, unitPrice));
+    });
+
     it("for 3 Apples Then have 3 Apples in cart.", () => {
         const cart = new ShoppingCart();
         cart.add(apple, 3);
@@ -51,6 +65,10 @@ describe("When call cart.add()", () => {
         expect(cart.total).toBe(3.75);
     });
 
+
+    function calcSubtotal(quantity: number, unitPrice: number) {
+        return (unitPrice * 100) * quantity / 100;
+    }
 
     function verifyInvalidQuantityError(add: () => void, quantity: number) {
         expect(add).toThrow(InvalidQuantity);

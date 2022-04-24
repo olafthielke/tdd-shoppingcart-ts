@@ -12,7 +12,7 @@ export default class ShoppingCartItems {
 
     get subtotal(): number {
         // Fixing floating point precision.
-        return (this.quantity * 100) * (this.unitPrice * 100) / (100 * 100);
+        return this.quantity * (this.unitPrice * 100) / 100;
     }
 
     constructor(public readonly product: Product, 

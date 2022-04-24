@@ -1,4 +1,5 @@
-export default interface Product {
-    name: string;
-    unitPrice: number;
+export default class Product {
+
+    constructor(public readonly name: string, 
+        public readonly unitPrice: number) { }
 }
