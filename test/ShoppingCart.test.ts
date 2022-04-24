@@ -111,3 +111,11 @@ describe("When call cart.clear()", () => {
         expect(cart.total).toBe(0);
     }
 });
+
+describe("When call cart.remove()", () => {
+
+    it("Then can call cart.remove()", () => {
+        const cart = new ShoppingCart();
+        cart.remove();
+    });
+});
