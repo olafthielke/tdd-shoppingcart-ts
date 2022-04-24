@@ -3,6 +3,10 @@ import { InvalidQuantity } from "../src/errors";
 import Product from "../src/Product";
 import ShoppingCartItem from "../src/ShoppingCartItem";
 
+const apple: Product = { name : "Apple", unitPrice: 0.35 };
+const banana: Product = { name : "Banana", unitPrice: 0.75 };
+const cantaloupe: Product = { name : "Cantaloupe", unitPrice: 2.50 };
+
 describe("When construct ShoppingCart", () => {
 
     it("Then the cart must be empty.", () => {
@@ -17,10 +21,6 @@ describe("When construct ShoppingCart", () => {
 });
 
 describe("When call cart.add()", () => {
-
-    const apple: Product = { name : "Apple", unitPrice: 0.35 };
-    const banana: Product = { name : "Banana", unitPrice: 0.75 };
-    const cantaloupe: Product = { name : "Cantaloupe", unitPrice: 2.50 };
 
     it.each([
         [0],
@@ -93,8 +93,15 @@ describe("When call cart.clear()", () => {
         cart.clear();
         verifyCartIsEmpty(cart);
     });
+
+    it("on a cart with one item Then cart will be empty.", () => {
+        const cart = new ShoppingCart();
+        cart.add(apple, 7);
+        cart.clear();
+        verifyCartIsEmpty(cart);
+    });    
     
-    
+
     function verifyCartIsEmpty(cart: ShoppingCart) {
         expect(cart.items.length).toBe(0);
         expect(cart.total).toBe(0);
