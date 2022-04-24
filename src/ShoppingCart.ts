@@ -16,6 +16,6 @@ export default class ShoppingCart {
     }
 
     public clear() {
-        
+        this.items = [];
     }
 }
