@@ -47,6 +47,7 @@ describe("When call cart.add()", () => {
         cart.add(banana, 5);
         expect(cart.items.length).toBe(1);
         verifyCartItem(cart.items[0], banana, 5);
+        expect(cart.total).toBe(3.75);
     });
 
 
