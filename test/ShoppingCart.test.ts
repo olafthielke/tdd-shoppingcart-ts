@@ -25,7 +25,7 @@ describe("When call cart.add()", () => {
         (`with quantity of %i Then throw InvalidQuantity error.`, 
         (quantity) => {
             const cart = new ShoppingCart();
-            const add = () => cart.add({ }, quantity);
+            const add = () => cart.add({ name : "Apple", unitPrice: 0.35 }, quantity);
             verifyInvalidQuantityError(add, quantity);    
         }
     );
