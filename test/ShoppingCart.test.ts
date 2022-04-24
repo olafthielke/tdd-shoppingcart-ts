@@ -65,19 +65,9 @@ describe("When call cart.add()", () => {
     });
 
 
-    function calcSubtotal(quantity: number, unitPrice: number) {
-        return (unitPrice * 100) * quantity / 100;
-    }
-
     function verifyInvalidQuantityError(add: () => void, quantity: number) {
         expect(add).toThrow(InvalidQuantity);
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
-    }
-
-    function verifyCartItem(item: ShoppingCartItem, product: Product, quantity: number) {
-        expect(item.productName).toBe(product.name);
-        expect(item.unitPrice).toBe(product.unitPrice);
-        expect(item.quantity).toBe(quantity);
     }
 });
 
@@ -113,10 +103,30 @@ describe("When call cart.remove()", () => {
         cart.remove("Apple");
         verifyCartIsEmpty(cart);
     });
+
+    it("on a product that is not in the cart, then do nothing.", () => {
+        const cart = new ShoppingCart();
+        cart.add(apple, 6);
+        cart.remove("Banana");
+
+        expect(cart.items.length).toBe(1);
+        verifyCartItem(cart.items[0], apple, 6);
+        expect(cart.total).toBe(calcSubtotal(6, apple.unitPrice));
+    });
 });
 
+
+function calcSubtotal(quantity: number, unitPrice: number) {
+    return (unitPrice * 100) * quantity / 100;
+}
 
 function verifyCartIsEmpty(cart: ShoppingCart) {
     expect(cart.items.length).toBe(0);
     expect(cart.total).toBe(0);
+}
+
+function verifyCartItem(item: ShoppingCartItem, product: Product, quantity: number) {
+    expect(item.productName).toBe(product.name);
+    expect(item.unitPrice).toBe(product.unitPrice);
+    expect(item.quantity).toBe(quantity);
 }
