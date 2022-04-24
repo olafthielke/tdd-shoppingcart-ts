@@ -6,7 +6,7 @@ export default class ShoppingCart {
     items: ShoppingCartItem[] = [];
 
     get total(): number {
-        return (this.items.length === 0) ? 0 : this.items[0].subtotal;
+        return this.items.reduce((sum, item) => sum + item.subtotal, 0);
     }
 
     public add(product: Product, quantity: number) {
