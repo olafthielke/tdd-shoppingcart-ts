@@ -47,6 +47,7 @@ describe("When call cart.add()", () => {
     function verifyCartHas3Apples(cart: ShoppingCart) {
         expect(cart.items.length).toBe(1);
         expect(cart.items[0].name).toBe("Apple");
+        expect(cart.items[0].unitPrice).toBe(0.35);
         expect(cart.items[0].quantity).toBe(3);
     }
 });
