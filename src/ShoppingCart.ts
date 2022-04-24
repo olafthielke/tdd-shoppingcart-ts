@@ -2,7 +2,10 @@ import { InvalidQuantity } from "./errors";
 
 export default class ShoppingCart {
     items: any = [];
-    total: number = 0;
+
+    get total(): number {
+        return (this.items.length === 0) ? 0 : 1.05;
+    }
 
     public add(product: any, quantity: number) {
         if (quantity <= 0)
