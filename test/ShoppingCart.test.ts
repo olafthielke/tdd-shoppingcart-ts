@@ -80,3 +80,11 @@ describe("When call cart.add()", () => {
         expect(item.quantity).toBe(quantity);
     }
 });
+
+describe("When call cart.clear()", () => {
+
+    it("Then can call cart.clear().", () => {
+        const cart = new ShoppingCart();
+        cart.clear();
+    });
+});
