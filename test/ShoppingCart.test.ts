@@ -37,6 +37,14 @@ describe("When call cart.add()", () => {
         expect(cart.total).toBe(1.05);
     });
 
+    it("for 5 Bananas Then have 5 Bananas in cart.", () => {
+        const cart = new ShoppingCart();
+        cart.add({ name : "Banana", unitPrice: 0.75 }, 5);
+        expect(cart.items.length).toBe(1);
+        expect(cart.items[0].name).toBe("Banana");
+        expect(cart.items[0].unitPrice).toBe(0.75);
+        expect(cart.items[0].quantity).toBe(5);
+    });
 
 
     function verifyInvalidQuantityError(add: () => void, quantity: number) {
