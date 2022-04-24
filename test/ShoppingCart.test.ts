@@ -99,7 +99,16 @@ describe("When call cart.clear()", () => {
         cart.add(apple, 7);
         cart.clear();
         verifyCartIsEmpty(cart);
-    });    
+    });
+
+    it("on a cart with multiple items Then cart will be empty.", () => {
+        const cart = new ShoppingCart();
+        cart.add(apple, 7);
+        cart.add(banana, 13);
+        cart.add(cantaloupe, 41);
+        cart.clear();
+        verifyCartIsEmpty(cart);
+    });
     
 
     function verifyCartIsEmpty(cart: ShoppingCart) {
