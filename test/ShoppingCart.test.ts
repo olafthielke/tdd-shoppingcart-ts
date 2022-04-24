@@ -91,8 +91,13 @@ describe("When call cart.clear()", () => {
     it("on an empty cart Then cart will remain empty.", () => {
         const cart = new ShoppingCart();
         cart.clear();
+        verifyCartIsEmpty(cart);
+    });
+    
+    
+    function verifyCartIsEmpty(cart: ShoppingCart) {
         expect(cart.items.length).toBe(0);
         expect(cart.total).toBe(0);
-    });
-
+    }    
 });
+
