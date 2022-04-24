@@ -33,9 +33,7 @@ describe("When call cart.add()", () => {
     it("for 3 Apples Then have 3 Apples in cart.", () => {
         const cart = new ShoppingCart();
         cart.add({ name : "Apple" }, 3);
-        expect(cart.items.length).toBe(1);
-        expect(cart.items[0].name).toBe("Apple");
-        expect(cart.items[0].quantity).toBe(3);
+        verifyCartHas3Apples(cart);
     });
 
 
@@ -43,5 +41,11 @@ describe("When call cart.add()", () => {
     function verifyInvalidQuantityError(add: () => void, quantity: number) {
         expect(add).toThrow(InvalidQuantity);
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
+    }
+
+    function verifyCartHas3Apples(cart: ShoppingCart) {
+        expect(cart.items.length).toBe(1);
+        expect(cart.items[0].name).toBe("Apple");
+        expect(cart.items[0].quantity).toBe(3);
     }
 });
