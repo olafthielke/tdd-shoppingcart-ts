@@ -6,7 +6,7 @@ export default class ShoppingCart {
     items: ShoppingCartItem[] = [];
 
     get total(): number {
-        return (this.items.length === 0) ? 0 : (this.items[0].quantity * 100) * (this.items[0].unitPrice * 100) / (100 * 100);
+        return (this.items.length === 0) ? 0 : this.items[0].subtotal;
     }
 
     public add(product: Product, quantity: number) {
