@@ -1,5 +1,7 @@
 import ShoppingCart from "../src/ShoppingCart";
 import { InvalidQuantity } from "../src/errors";
+import Product from "../src/Product";
+import ShoppingCartItem from "../src/ShoppingCartItem";
 
 describe("When construct ShoppingCart", () => {
 
@@ -32,18 +34,19 @@ describe("When call cart.add()", () => {
 
     it("for 3 Apples Then have 3 Apples in cart.", () => {
         const cart = new ShoppingCart();
-        cart.add({ name : "Apple", unitPrice: 0.35 }, 3);
-        verifyCartHas3Apples(cart);
+        const apple = { name : "Apple", unitPrice: 0.35 };
+        cart.add(apple, 3);
+        expect(cart.items.length).toBe(1);
+        verifyCartItem(cart.items[0], apple, 3);
         expect(cart.total).toBe(1.05);
     });
 
     it("for 5 Bananas Then have 5 Bananas in cart.", () => {
         const cart = new ShoppingCart();
-        cart.add({ name : "Banana", unitPrice: 0.75 }, 5);
+        const banana = { name : "Banana", unitPrice: 0.75 };
+        cart.add(banana, 5);
         expect(cart.items.length).toBe(1);
-        expect(cart.items[0].name).toBe("Banana");
-        expect(cart.items[0].unitPrice).toBe(0.75);
-        expect(cart.items[0].quantity).toBe(5);
+        verifyCartItem(cart.items[0], banana, 5);
     });
 
 
@@ -52,10 +55,9 @@ describe("When call cart.add()", () => {
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
     }
 
-    function verifyCartHas3Apples(cart: ShoppingCart) {
-        expect(cart.items.length).toBe(1);
-        expect(cart.items[0].name).toBe("Apple");
-        expect(cart.items[0].unitPrice).toBe(0.35);
-        expect(cart.items[0].quantity).toBe(3);
+    function verifyCartItem(item: ShoppingCartItem, product: Product, quantity: number) {
+        expect(item.name).toBe(product.name);
+        expect(item.unitPrice).toBe(product.unitPrice);
+        expect(item.quantity).toBe(quantity);
     }
 });
