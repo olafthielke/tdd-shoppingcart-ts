@@ -87,4 +87,12 @@ describe("When call cart.clear()", () => {
         const cart = new ShoppingCart();
         cart.clear();
     });
+
+    it("on an empty cart Then cart will remain empty.", () => {
+        const cart = new ShoppingCart();
+        cart.clear();
+        expect(cart.items.length).toBe(0);
+        expect(cart.total).toBe(0);
+    });
+
 });
