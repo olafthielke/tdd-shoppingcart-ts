@@ -32,8 +32,9 @@ describe("When call cart.add()", () => {
 
     it("for 3 Apples Then have 3 Apples in cart.", () => {
         const cart = new ShoppingCart();
-        cart.add({ name : "Apple" }, 3);
+        cart.add({ name : "Apple", unitPrice: 0.35 }, 3);
         verifyCartHas3Apples(cart);
+        expect(cart.total).toBe(1.05);
     });
 
 
