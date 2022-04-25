@@ -10,13 +10,16 @@ export default class ShoppingCart {
     }
 
     public add(product: Product, quantity: number) {
+        this.validateAdd(quantity, product);
+        this.items.push(new ShoppingCartItem(product, quantity));
+    }
+
+    private validateAdd(quantity: number, product: Product) {
         if (quantity <= 0)
             throw new InvalidQuantity(quantity);
         const index = this.findItemIndex(product.name);
         if (index > -1)
             throw new ProductAlreadyInCart();
-
-        this.items.push(new ShoppingCartItem(product, quantity));
     }
 
     public remove(productName: string) {
