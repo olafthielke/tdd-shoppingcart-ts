@@ -41,6 +41,7 @@ describe("When call cart.add()", () => {
         cart.add(apple, 7);
         const add = () => cart.add(apple, 3);
         expect(add).toThrow(ProductAlreadyInCart);
+        expect(add).toThrow("Product 'Apple' is already in the cart.");
     });
 
     it.each([
