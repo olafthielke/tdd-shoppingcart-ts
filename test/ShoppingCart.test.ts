@@ -46,9 +46,7 @@ describe("When call cart.add()", () => {
             const cart = new ShoppingCart();
             const product = new Product(productName, unitPrice); 
             cart.add(product, quantity);
-            expect(cart.items.length).toBe(1);
-            verifyCartItem(cart.items[0], product, quantity);
-            expect(cart.total).toBe(calcSubtotal(quantity, unitPrice));
+            verifyCart(cart, [product, quantity]);
     });
 
     it("with 13 Cantaloupes, 19 Bananas and 23 Apples then have those in cart.", () => {
@@ -56,12 +54,7 @@ describe("When call cart.add()", () => {
         cart.add(cantaloupe, 13);
         cart.add(banana, 19);
         cart.add(apple, 23);
-
-        expect(cart.items.length).toBe(3);
-        verifyCartItem(cart.items[0], cantaloupe, 13);
-        verifyCartItem(cart.items[1], banana, 19);
-        verifyCartItem(cart.items[2], apple, 23);
-        expect(cart.total).toBe(calcSubtotal(13, cantaloupe.unitPrice) + calcSubtotal(19, banana.unitPrice) + calcSubtotal(23, apple.unitPrice));
+        verifyCart(cart, [cantaloupe, 13], [banana, 19], [apple, 23]);
     });
 
 
@@ -108,25 +101,44 @@ describe("When call cart.remove()", () => {
         const cart = new ShoppingCart();
         cart.add(apple, 6);
         cart.remove("Banana");
-
-        expect(cart.items.length).toBe(1);
-        verifyCartItem(cart.items[0], apple, 6);
-        expect(cart.total).toBe(calcSubtotal(6, apple.unitPrice));
+        verifyCart(cart, [apple, 6]);
     });
 });
 
-
-function calcSubtotal(quantity: number, unitPrice: number) {
-    return (unitPrice * 100) * quantity / 100;
-}
 
 function verifyCartIsEmpty(cart: ShoppingCart) {
     expect(cart.items.length).toBe(0);
     expect(cart.total).toBe(0);
 }
 
-function verifyCartItem(item: ShoppingCartItem, product: Product, quantity: number) {
-    expect(item.productName).toBe(product.name);
-    expect(item.unitPrice).toBe(product.unitPrice);
-    expect(item.quantity).toBe(quantity);
+function verifyCart(cart: ShoppingCart, ...items: [Product, number][]) {
+    expect(cart.items.length).toBe(items.length);
+    verifyCartItems(cart.items, items);
+    verifyCartTotal(cart, items);
+}
+
+function verifyCartItem(actual: ShoppingCartItem, expected: [Product, number]) {
+    const [product, quantity] = expected;
+    expect(actual.productName).toBe(product.name);
+    expect(actual.unitPrice).toBe(product.unitPrice);
+    expect(actual.quantity).toBe(quantity);
+}
+
+function verifyCartItems(actual: ShoppingCartItem[], expected: [Product, number][]) {
+    for (let i = 0; i < actual.length ; i++) {
+        verifyCartItem(actual[i], expected[i]);
+    }
+}
+
+function verifyCartTotal(cart: ShoppingCart, expected: [Product, number][]) {
+    let total = 0;
+    for (let i = 0; i < cart.items.length ; i++) {
+        let [product, quantity] = expected[i];
+        total += calcSubtotal(quantity, product.unitPrice);
+    }
+    expect(cart.total).toBe(total);
+}
+
+function calcSubtotal(quantity: number, unitPrice: number) {
+    return (unitPrice * 100) * quantity / 100;
 }
