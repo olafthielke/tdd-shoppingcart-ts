@@ -41,14 +41,14 @@ describe("When call cart.add()", () => {
         ["Banana", 0.75],
         ["Cantaloupe", 2.50],
         ])
-        ("and %s already exists in cart Then throw ProductAlreadyInCart error.",
+        ("and %s already exists in cart Then add the new quantity to the existing item.",
         (productName, unitPrice) => {
             const cart = new ShoppingCart();
             const product = new Product(productName, unitPrice);
             cart.add(product, 7);
-            const add = () => cart.add(product, 3);
-            verifyProductAlreadyInCartError(add, productName);
-    });
+            cart.add(product, 3);
+            verifyCart(cart, [product, 10]);
+       });
 
     it.each([
         [3, "Apple", 0.35], 
