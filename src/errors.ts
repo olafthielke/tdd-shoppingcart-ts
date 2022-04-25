@@ -3,3 +3,7 @@ export class InvalidQuantity extends Error {
         super(`${quantity} is not a valid quantity.`)
     }
 }
+
+export class ProductAlreadyInCart extends Error {
+    
+}

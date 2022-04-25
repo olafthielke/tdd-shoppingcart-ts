@@ -1,5 +1,5 @@
 import ShoppingCart from "../src/ShoppingCart";
-import { InvalidQuantity } from "../src/errors";
+import { InvalidQuantity, ProductAlreadyInCart } from "../src/errors";
 import Product from "../src/Product";
 import ShoppingCartItem from "../src/ShoppingCartItem";
 
