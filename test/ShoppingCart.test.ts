@@ -36,20 +36,26 @@ describe("When call cart.add()", () => {
         }
     );
 
-    it("and product already exists in cart Then throw ProductAlreadyInCart error.", () => {
-        const cart = new ShoppingCart();
-        cart.add(apple, 7);
-        const add = () => cart.add(apple, 3);
-        expect(add).toThrow(ProductAlreadyInCart);
-        expect(add).toThrow("Product 'Apple' is already in the cart.");
+    it.each([
+        ["Apple", 0.35], 
+        ["Banana", 0.75],
+        ])
+        ("and %s already exists in cart Then throw ProductAlreadyInCart error.",
+        (productName, unitPrice) => {
+            const cart = new ShoppingCart();
+            const product = new Product(productName, unitPrice);
+            cart.add(product, 7);
+            const add = () => cart.add(product, 3);
+            expect(add).toThrow(ProductAlreadyInCart);
+            expect(add).toThrow(`Product '${productName}' is already in the cart.`);
     });
 
     it.each([
-        [3, "apple", 0.35], 
-        [5, "banana", 0.75],
-        [11, "cantaloupe", 2.50]
+        [3, "Apple", 0.35], 
+        [5, "Banana", 0.75],
+        [11, "Cantaloupe", 2.50]
         ])
-        (`for %i %ss Then will have this in cart.`, 
+        (`for %i %ss Then will have this in cart.`,
         (quantity, productName, unitPrice) => {
             const cart = new ShoppingCart();
             const product = new Product(productName, unitPrice); 
