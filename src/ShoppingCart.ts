@@ -1,4 +1,4 @@
-import { InvalidQuantity, ProductAlreadyInCart } from "./errors";
+import { InvalidQuantity } from "./errors";
 import Product from "./Product";
 import ShoppingCartItem from "./ShoppingCartItem";
 

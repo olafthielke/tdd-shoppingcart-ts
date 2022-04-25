@@ -76,11 +76,6 @@ describe("When call cart.add()", () => {
         expect(add).toThrow(InvalidQuantity);
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
     }
-
-    function verifyProductAlreadyInCartError(add: () => void, productName: string) {
-        expect(add).toThrow(ProductAlreadyInCart);
-        expect(add).toThrow(`Product '${productName}' is already in the cart.`);
-    }
 });
 
 describe("When call cart.clear()", () => {
