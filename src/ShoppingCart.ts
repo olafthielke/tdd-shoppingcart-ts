@@ -19,7 +19,7 @@ export default class ShoppingCart {
             throw new InvalidQuantity(quantity);
         const index = this.findItemIndex(product.name);
         if (index > -1)
-            throw new ProductAlreadyInCart();
+            throw new ProductAlreadyInCart(product.name);
     }
 
     public remove(productName: string) {

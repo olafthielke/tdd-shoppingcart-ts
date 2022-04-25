@@ -5,7 +5,7 @@ export class InvalidQuantity extends Error {
 }
 
 export class ProductAlreadyInCart extends Error {
-    constructor() {
-        super("Product 'Apple' is already in the cart.");
+    constructor(productName: string) {
+        super(`Product '${productName}' is already in the cart.`);
     }
 }
