@@ -36,6 +36,13 @@ describe("When call cart.add()", () => {
         }
     );
 
+    it("and product already exists in cart Then throw ProductAlreadyInCart error.", () => {
+        const cart = new ShoppingCart();
+        cart.add(apple, 7);
+        const add = () => cart.add(apple, 3);
+        expect(add).toThrow(ProductAlreadyInCart);
+    });
+
     it.each([
         [3, "apple", 0.35], 
         [5, "banana", 0.75],
