@@ -16,12 +16,17 @@ export default class ShoppingCart {
     }
 
     public remove(productName: string) {
-        const index = this.items.findIndex(item => item.productName === productName);
+        const index = this.findItemIndex(productName);
         if (index > -1)
             this.items.splice(index, 1);
     }
 
     public clear() {
         this.items = [];
+    }
+
+    
+    private findItemIndex(productName: string) {
+        return this.items.findIndex(item => item.productName === productName);
     }
 }
