@@ -110,6 +110,15 @@ describe("When call cart.remove()", () => {
         cart.remove(apple.name);
         verifyCartIsEmpty(cart);
     });
+
+    it("on one product of many in cart, Then remove only that product from cart.", () => {
+        const cart = new ShoppingCart();
+        cart.add(banana, 3);
+        cart.add(apple, 9);
+        cart.add(cantaloupe, 15);
+        cart.remove(apple.name);
+        verifyCart(cart, [banana, 3], [cantaloupe, 15]);
+    });
 });
 
 
