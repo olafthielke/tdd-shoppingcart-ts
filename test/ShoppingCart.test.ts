@@ -37,8 +37,9 @@ describe("When call cart.add()", () => {
     );
 
     it.each([
-        ["Apple", 0.35], 
+        ["Apple", 0.35],
         ["Banana", 0.75],
+        ["Cantaloupe", 2.50],
         ])
         ("and %s already exists in cart Then throw ProductAlreadyInCart error.",
         (productName, unitPrice) => {
@@ -46,8 +47,7 @@ describe("When call cart.add()", () => {
             const product = new Product(productName, unitPrice);
             cart.add(product, 7);
             const add = () => cart.add(product, 3);
-            expect(add).toThrow(ProductAlreadyInCart);
-            expect(add).toThrow(`Product '${productName}' is already in the cart.`);
+            verifyProductAlreadyInCartError(add, productName);
     });
 
     it.each([
@@ -75,6 +75,11 @@ describe("When call cart.add()", () => {
     function verifyInvalidQuantityError(add: () => void, quantity: number) {
         expect(add).toThrow(InvalidQuantity);
         expect(add).toThrow(`${quantity} is not a valid quantity.`);
+    }
+
+    function verifyProductAlreadyInCartError(add: () => void, productName: string) {
+        expect(add).toThrow(ProductAlreadyInCart);
+        expect(add).toThrow(`Product '${productName}' is already in the cart.`);
     }
 });
 
