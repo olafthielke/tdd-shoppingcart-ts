@@ -16,5 +16,5 @@ export default class ShoppingCartItems {
     }
 
     constructor(public readonly product: Product, 
-        public readonly quantity: number) { }
+        public quantity: number) { }
 }
