@@ -1,4 +1,4 @@
-import { InvalidQuantity } from "./errors";
+import { InvalidQuantity, ProductAlreadyInCart } from "./errors";
 import Product from "./Product";
 import ShoppingCartItem from "./ShoppingCartItem";
 
@@ -12,6 +12,10 @@ export default class ShoppingCart {
     public add(product: Product, quantity: number) {
         if (quantity <= 0)
             throw new InvalidQuantity(quantity);
+        const index = this.findItemIndex(product.name);
+        if (index > -1)
+            throw new ProductAlreadyInCart();
+
         this.items.push(new ShoppingCartItem(product, quantity));
     }
 
@@ -25,7 +29,7 @@ export default class ShoppingCart {
         this.items = [];
     }
 
-    
+
     private findItemIndex(productName: string) {
         return this.items.findIndex(item => item.productName === productName);
     }
