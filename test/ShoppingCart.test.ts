@@ -103,6 +103,13 @@ describe("When call cart.remove()", () => {
         cart.remove("Banana");
         verifyCart(cart, [apple, 6]);
     });
+
+    it("on only product in the cart results in empty cart.", () => {
+        const cart = new ShoppingCart();
+        cart.add(apple, 6);
+        cart.remove(apple.name);
+        verifyCartIsEmpty(cart);
+    });
 });
 
 
