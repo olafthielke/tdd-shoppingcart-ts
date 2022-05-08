@@ -1,6 +1,6 @@
 import Product from "./Product";
 
-export default class ShoppingCartItems {
+export default class ShoppingCartItem {
 
     get productName() : string {
         return this.product.name;
